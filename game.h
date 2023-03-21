@@ -12,6 +12,8 @@ public:
 private:
 	std::vector<std::unique_ptr<GameObject>> gameObjects;// std::make_unique;
 	sf::RenderWindow window;
+	sf::Event gameEvent;
+	sf::Color bgColor = sf::Color(6, 8, 12);
 };
 
 
@@ -22,7 +24,7 @@ public:
 	bool remove = false;
 	//functions
 	GameObject() {};
-	~GameObject() {};
-	virtual void draw(sf::RenderWindow& window);
-	virtual void update(Game& gameState, float delta);
+	GameObject(int x, int y, int width, int height, sf::Color color = sf::Color::White);
+	virtual void draw(sf::RenderWindow& window) {};
+	virtual void update(Game& gameState, float delta) {};
 };

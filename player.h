@@ -3,9 +3,9 @@
 
 class Player : public GameObject {
 public:
-	void draw(sf::RenderWindow& window) {
-
-	};
+	Player(int x = 8 * 120, int y = 120);
+	void draw(sf::RenderWindow& window);
+	void update(Game& gameState, float delta);
 private:
 
 };
