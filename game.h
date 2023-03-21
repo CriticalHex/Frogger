@@ -1,6 +1,6 @@
 #pragma once
 #include<vector>
-#include<SFML/Graphics.hpp>
+#include"globals.h"
 
 class GameObject;
 
@@ -24,7 +24,7 @@ public:
 	bool remove = false;
 	//functions
 	GameObject() {};
-	GameObject(int x, int y, int width, int height, sf::Color color = sf::Color::White);
-	virtual void draw(sf::RenderWindow& window) {};
-	virtual void update(Game& gameState, float delta) {};
+	GameObject(int x, int y, sf::Vector2f size, sf::Color color = sf::Color::White);
+	virtual void draw(sf::RenderWindow& window) = 0;
+	virtual void update(Game& gameState, float delta) = 0;
 };

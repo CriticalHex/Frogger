@@ -1,13 +1,12 @@
-#include"game.h"
 #include"player.h"
 
 Game::Game() {
 	window.create(sf::VideoMode(1920, 1080), "Frogger", sf::Style::Fullscreen);
-
+	window.setVerticalSyncEnabled(true);
 }
 
-GameObject::GameObject(int x, int y, int width, int height, sf::Color color) {
-	rect.setSize(sf::Vector2f(width, height));
+GameObject::GameObject(int x, int y, sf::Vector2f size, sf::Color color) {
+	rect.setSize(size);
 	rect.setFillColor(color);
 	rect.setPosition(sf::Vector2f(x, y));
 }

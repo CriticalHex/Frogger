@@ -3,9 +3,9 @@
 
 class Player : public GameObject {
 public:
-	Player(int x = 8 * 120, int y = 120);
+	Player() : 
+		GameObject(tileSize.x* (windowSize.x / (tileSize.x * 2)), windowSize.y - tileSize.y, tileSize, sf::Color::Blue) {};
 	void draw(sf::RenderWindow& window);
 	void update(Game& gameState, float delta);
 private:
-
 };
