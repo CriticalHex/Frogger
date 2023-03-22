@@ -4,8 +4,13 @@
 class Player : public GameObject {
 public:
 	Player() : 
-		GameObject(tileSize.x* (windowSize.x / (tileSize.x * 2)), windowSize.y - tileSize.y, tileSize, sf::Color::Blue) {};
-	void draw(sf::RenderWindow& window);
-	void update(Game& gameState, float delta);
+		GameObject(
+			tileSize.x* (windowSize.x / (tileSize.x * 2)), 
+			windowSize.y - tileSize.y, tileSize,
+			sf::Color::Green, "Player") {};
+	void update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta);
+	void move(sf::Vector2f direction);
+	sf::Clock timer;
+	sf::Time timeElapsed;
 private:
 };

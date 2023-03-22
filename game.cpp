@@ -5,11 +5,22 @@ Game::Game() {
 	window.setVerticalSyncEnabled(true);
 }
 
-GameObject::GameObject(int x, int y, sf::Vector2f size, sf::Color color) {
+GameObject::GameObject(int x, int y, sf::Vector2f size, sf::Color color, std::string type) {
 	rect.setSize(size);
 	rect.setFillColor(color);
 	rect.setPosition(sf::Vector2f(x, y));
+	typeName = type;
 }
+
+
+void GameObject::draw(sf::RenderWindow& window) {
+	window.draw(rect);
+};
+
+void Game::initialize() {
+
+
+};
 
 void Game::run() {
 
@@ -27,8 +38,10 @@ void Game::run() {
 			}
 		}
 		//UPDATE-------------------------------------------------------------
+		delta = clock.getElapsedTime();
+		clock.restart();
 		for (std::unique_ptr<GameObject>& object : gameObjects) {
-			object.get()->update(*this, 1);
+			object.get()->update(gameObjects, delta.asMilliseconds());
 		}
 
 		//RENDER--------------------------------------------------------------
