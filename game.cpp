@@ -1,4 +1,5 @@
 #include"player.h"
+#include"enemy.h"
 
 Game::Game() {
 	window.create(sf::VideoMode(1920, 1080), "Frogger", sf::Style::Fullscreen);
@@ -18,7 +19,11 @@ void GameObject::draw(sf::RenderWindow& window) {
 };
 
 void Game::initialize() {
-
+	//first line is info
+	//second line spawn
+	for (int i = 0; i < 3; i++) {
+		gameObjects.push_back(std::make_unique<Car>(sf::Vector2f(tileSize.x * (i + 1), tileSize.y * 3), 2));
+	}
 
 };
 

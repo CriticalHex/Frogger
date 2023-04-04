@@ -22,13 +22,11 @@ private:
 
 class GameObject {
 public:
-	//vars
 	sf::RectangleShape rect;
 	bool remove = false;
 	std::string typeName;
-	//functions
 	GameObject() {};
 	GameObject(int x, int y, sf::Vector2f size, sf::Color color, std::string type);
-	void draw(sf::RenderWindow& window) = 0;
+	void draw(sf::RenderWindow& window);
 	virtual void update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta) = 0;
 };

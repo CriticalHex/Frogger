@@ -18,9 +18,11 @@ void Car::update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float de
 void Car::playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects) {
 	for (std::unique_ptr<GameObject>& object : gameObjects) {
 		if (object.get()->typeName == "Player") {
-
-			Player* player = object.get();
-
+			Player* player = (Player*)object.get();
+			if (rect.getGlobalBounds().intersects(player->rect.getGlobalBounds())) {
+				//gameover
+				object.release();
+			}
 		}
 	}
 }
