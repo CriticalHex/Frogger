@@ -4,6 +4,7 @@
 Game::Game() {
 	window.create(sf::VideoMode(1920, 1080), "Frogger", sf::Style::Fullscreen);
 	window.setVerticalSyncEnabled(true);
+	window.setFramerateLimit(60);
 }
 
 GameObject::GameObject(int x, int y, sf::Vector2f size, sf::Color color, std::string type) {
@@ -20,16 +21,18 @@ void GameObject::draw(sf::RenderWindow& window) {
 
 void Game::initialize() {
 	//first line is info
-	//second line spawn
+	//second line player spawn
+	gameObjects.push_back(std::make_unique<Player>());
+	//third line cars moving left
 	for (int i = 0; i < 3; i++) {
-		gameObjects.push_back(std::make_unique<Car>(sf::Vector2f(tileSize.x * (i + 1), tileSize.y * 3), 2));
+		gameObjects.push_back(std::make_unique<Car>(sf::Vector2f(tileSize.x * (i + 1), windowSize.y - tileSize.y * 3), .5));
 	}
 
 };
 
 void Game::run() {
 
-	gameObjects.push_back(std::make_unique<Player>());
+	initialize();
 
 	while (window.isOpen()) {
 		while (window.pollEvent(gameEvent))

@@ -1,5 +1,7 @@
 #include"enemy.h"
 #include<typeinfo>
+#include<iostream>
+using namespace std;
 
 void Car::update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta) {
 	if (speed < 0) { //moving left
@@ -12,7 +14,8 @@ void Car::update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float de
 			rect.setPosition(spawnPoint);
 		}
 	}
-	rect.move(sf::Vector2f(speed * delta, 0));
+	rect.move(sf::Vector2f(int(speed * delta), 0));
+	//cout << delta << endl;
 }
 
 void Car::playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects) {
