@@ -6,16 +6,16 @@ using namespace std;
 void Car::update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta) {
 	if (speed < 0) { //moving left
 		if (rect.getPosition().x + tileSize.x <= 0) {
-			rect.setPosition(spawnPoint);
+			rect.move(sf::Vector2f(windowSize.x, 0));
 		}
 	}
 	else if (speed > 0) { //moving right
 		if (rect.getPosition().x >= windowSize.x) {
-			rect.setPosition(spawnPoint);
+			rect.move(sf::Vector2f(-windowSize.x, 0));
 		}
 	}
-	rect.move(sf::Vector2f(int(speed * delta), 0));
-	//cout << delta << endl;
+	rect.move(sf::Vector2f(speed * delta, 0));
+	//cout << speed << endl;
 }
 
 void Car::playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects) {
