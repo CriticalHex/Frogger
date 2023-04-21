@@ -11,6 +11,7 @@ public:
 	void run();
 private:
 	void initialize();
+	void garbageCollect();
 	std::vector<std::unique_ptr<GameObject>> gameObjects; // std::make_unique<GameObject>();
 	sf::RenderWindow window;
 	sf::Event gameEvent;

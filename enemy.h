@@ -17,5 +17,6 @@ public:
 		{ this->speed = speed; };
 	void update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta);
 	void playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects);
+	void move(float delta);
 private:
 };

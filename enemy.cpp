@@ -1,9 +1,12 @@
 #include"enemy.h"
 #include<typeinfo>
-#include<iostream>
-using namespace std;
 
 void Car::update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta) {
+	move(delta);
+	playerCollide(gameObjects);
+}
+
+void Car::move(float delta) {
 	if (speed < 0) { //moving left
 		if (rect.getPosition().x + tileSize.x <= 0) {
 			rect.move(sf::Vector2f(windowSize.x, 0));
@@ -15,7 +18,6 @@ void Car::update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float de
 		}
 	}
 	rect.move(sf::Vector2f(speed * delta, 0));
-	//cout << speed << endl;
 }
 
 void Car::playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects) {
@@ -24,7 +26,7 @@ void Car::playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects) {
 			Player* player = (Player*)object.get();
 			if (rect.getGlobalBounds().intersects(player->rect.getGlobalBounds())) {
 				//gameover
-				object.release();
+				object.get()->remove = true;
 			}
 		}
 	}

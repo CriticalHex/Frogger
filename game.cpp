@@ -30,6 +30,19 @@ void Game::initialize() {
 
 };
 
+void Game::garbageCollect() {
+	std::vector<std::vector<std::unique_ptr<GameObject>>::iterator> toDelete;
+	for (std::vector<std::unique_ptr<GameObject>>::iterator iter = gameObjects.begin(); iter != gameObjects.end(); iter++) {
+		if ((*iter).get()->remove) {
+			(*iter).release();
+			toDelete.push_back(iter);
+		}
+	}
+	for (auto& iter : toDelete) {
+		gameObjects.erase(iter);
+	}
+}
+
 void Game::run() {
 
 	initialize();
@@ -60,5 +73,6 @@ void Game::run() {
 		}
 
 		window.display();
+		garbageCollect();
 	}
 }
