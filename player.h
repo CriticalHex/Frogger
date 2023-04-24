@@ -3,7 +3,7 @@
 
 class Player : public GameObject {
 public:
-	Player() : 
+	Player() :
 		GameObject(
 			tileSize.x * (windowSize.x / (tileSize.x * 2)), 
 			windowSize.y - tileSize.x, tileSize, // should be tileSize.y not .x but it crashes :(

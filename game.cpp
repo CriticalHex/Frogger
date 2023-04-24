@@ -23,9 +23,22 @@ void Game::initialize() {
 	//first line is info
 	//second line player spawn
 	gameObjects.push_back(std::make_unique<Player>());
-	//third line cars moving left
-	for (int i = 0; i < 3; i++) {
-		gameObjects.push_back(std::make_unique<Car>(sf::Vector2f(tileSize.x * (i + 1), windowSize.y - tileSize.y * 3), .5));
+
+	//third line cars moving right
+	int count = 3;
+	sf::Vector2f pos;
+	for (int i = 0; i < count; i++) {
+		pos.x = (windowSize.x / 3) * (i + 1);
+		pos.y = windowSize.y - tileSize.y * 3;
+		gameObjects.push_back(std::make_unique<Car>(pos, .35));
+		pos.y = windowSize.y - tileSize.y * 4;
+		gameObjects.push_back(std::make_unique<Car>(pos, -.4));
+		pos.y = windowSize.y - tileSize.y * 5;
+		gameObjects.push_back(std::make_unique<Car>(pos, .5));
+		pos.y = windowSize.y - tileSize.y * 6;
+		gameObjects.push_back(std::make_unique<Car>(pos, -.3));
+		pos.y = windowSize.y - tileSize.y * 7;
+		gameObjects.push_back(std::make_unique<Car>(pos, .3));
 	}
 
 };
