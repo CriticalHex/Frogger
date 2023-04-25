@@ -22,7 +22,6 @@ void GameObject::draw(sf::RenderWindow& window) {
 void Game::initialize() {
 	//first line is info
 	//second line player spawn
-	gameObjects.push_back(std::make_unique<Player>());
 
 	//third line cars moving right
 	int count = 3;
@@ -39,8 +38,11 @@ void Game::initialize() {
 		gameObjects.push_back(std::make_unique<Car>(pos, -.3));
 		pos.y = windowSize.y - tileSize.y * 7;
 		gameObjects.push_back(std::make_unique<Car>(pos, .3));
+		pos.y = windowSize.y - tileSize.y * 9;
+		gameObjects.push_back(std::make_unique<Turtle>(pos, .3));
 	}
 
+	gameObjects.push_back(std::make_unique<Player>());
 };
 
 void Game::garbageCollect() {

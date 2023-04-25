@@ -14,9 +14,26 @@ private:
 class Car : public Enemy {
 public:
 	Car(sf::Vector2f position, float speed) : Enemy(position, sf::Color::Red, "Car")
-		{ this->speed = speed; };
+	{
+		this->speed = speed;
+	};
 	void update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta);
 	void playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects);
 	void move(float delta);
+private:
+};
+
+class Turtle : public Enemy {
+public:
+	Turtle(sf::Vector2f position, float speed, float microseconds) : Enemy(position, sf::Color::Cyan, "Turtle")
+	{
+		this->speed = speed;
+	};
+	void update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta);
+	void playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects);
+	void move(float delta);
+	sf::Clock timer;
+	sf::Time timeElapsed;
+	int state = 0;
 private:
 };
