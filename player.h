@@ -13,5 +13,7 @@ public:
 	bool wallCollision(sf::Vector2f direction);
 	sf::Clock timer;
 	sf::Time timeElapsed;
+	bool moved;
+	bool collidable;
 private:
 };

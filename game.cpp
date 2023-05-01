@@ -26,20 +26,53 @@ void Game::initialize() {
 	//third line cars moving right
 	int count = 3;
 	sf::Vector2f pos;
+	sf::Vector2f shift;
 	for (int i = 0; i < count; i++) {
 		pos.x = (windowSize.x / 3) * (i + 1);
+		//
 		pos.y = windowSize.y - tileSize.y * 3;
 		gameObjects.push_back(std::make_unique<Car>(pos, .35));
+		//
 		pos.y = windowSize.y - tileSize.y * 4;
 		gameObjects.push_back(std::make_unique<Car>(pos, -.4));
+		//
 		pos.y = windowSize.y - tileSize.y * 5;
 		gameObjects.push_back(std::make_unique<Car>(pos, .5));
+		//
 		pos.y = windowSize.y - tileSize.y * 6;
 		gameObjects.push_back(std::make_unique<Car>(pos, -.3));
+		//
 		pos.y = windowSize.y - tileSize.y * 7;
 		gameObjects.push_back(std::make_unique<Car>(pos, .3));
+		//
 		pos.y = windowSize.y - tileSize.y * 9;
-		gameObjects.push_back(std::make_unique<Turtle>(pos, .3));
+		shift.x = tileSize.x;
+		gameObjects.push_back(std::make_unique<Turtle>(pos + shift, .3, i));
+		shift.x = tileSize.x * 2;
+		gameObjects.push_back(std::make_unique<Turtle>(pos + shift, .3, i));
+		shift.x = tileSize.x * 3;
+		gameObjects.push_back(std::make_unique<Turtle>(pos + shift, .3, i));
+		//
+		pos.y = windowSize.y - tileSize.y * 10;
+		shift.x = tileSize.x;
+		gameObjects.push_back(std::make_unique<Log>(pos + shift, .4));
+		shift.x = tileSize.x * 2;
+		gameObjects.push_back(std::make_unique<Log>(pos + shift, .4));
+		shift.x = tileSize.x * 3;
+		gameObjects.push_back(std::make_unique<Log>(pos + shift, .4));
+		//
+		pos.y = windowSize.y - tileSize.y * 11;
+		shift.x = tileSize.x;
+		gameObjects.push_back(std::make_unique<Log>(pos + shift, .5));
+		shift.x = tileSize.x * 2;
+		gameObjects.push_back(std::make_unique<Log>(pos + shift, .5));
+		shift.x = tileSize.x * 3;
+		gameObjects.push_back(std::make_unique<Log>(pos + shift, .5));
+		shift.x = tileSize.x * 4;
+		gameObjects.push_back(std::make_unique<Log>(pos + shift, .5));
+		shift.x = tileSize.x * 5;
+		gameObjects.push_back(std::make_unique<Log>(pos + shift, .5));
+
 	}
 
 	gameObjects.push_back(std::make_unique<Player>());

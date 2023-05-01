@@ -25,9 +25,10 @@ private:
 
 class Turtle : public Enemy {
 public:
-	Turtle(sf::Vector2f position, float speed, float microseconds) : Enemy(position, sf::Color::Cyan, "Turtle")
+	Turtle(sf::Vector2f position, float speed, int seconds) : Enemy(position, sf::Color::Cyan, "Turtle")
 	{
 		this->speed = speed;
+		timeOffset = seconds;
 	};
 	void update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta);
 	void playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects);
@@ -35,5 +36,19 @@ public:
 	sf::Clock timer;
 	sf::Time timeElapsed;
 	int state = 0;
+	int timeOffset;
+private:
+};
+
+
+class Log : public Enemy {
+public:
+	Log(sf::Vector2f position, float speed) : Enemy(position, sf::Color::Color(150,75,0), "Log")
+	{
+		this->speed = speed;
+	};
+	void update(std::vector<std::unique_ptr<GameObject>>& gameObjects, float delta);
+	void playerCollide(std::vector<std::unique_ptr<GameObject>>& gameObjects);
+	void move(float delta);
 private:
 };
